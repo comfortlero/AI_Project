@@ -2,15 +2,15 @@
 '''
         Extract Data as script:
 
-            run this scirpt by usage: 
+            run this scirpt by usage:
                 python3 ./extract_data.py [OPTIONS]
 
                 OPTIONS:
 
-                    --video_path='../your/path/to/file/' this must end with either \\ or a /
-                    
-                    --image_resize=(h,w) this must be a tuple with only two values **defaults to (416,416)**
-                    
+                    --video_path='../your/path/to/file/' this must end with a /
+
+                    --image_resize=size this must be a int with only a single value **defaults to 416**
+
                     --dataframe_path='../path/to/dataframe.pkl' this must also end with either \\ or / **defaults to current directory**
 
                     --use_video=True allow for extraction via video files **defaults to True, use False if you cant do mp4 videos or avi**
@@ -25,8 +25,8 @@
 
                     Single class per image/video:
 
-                        className.mp4 
-                            
+                        className.mp4
+
                             --className non space seperated all anycase string the will match to the class features list we have exactly.
 
                     Multi-class per image/video:
@@ -62,11 +62,11 @@ def install_requirements(file_path):
     subprocess.call(['sudo','apt-get','install','software-properties-common'])
     subprocess.call(['sudo','apt-add-repository','universe'])
     subprocess.call(['sudo','apt-get','update'])
-    subprocess.call(['sudo', 'apt-get','python3-pip'])
+    subprocess.call(['sudo', 'apt-get','install', 'python3-pip'])
     subprocess.call(['sudo','apt-get','install','python-pip'])
     subprocess.call(['sudo','apt-get','install','python3-opencv'])
     subprocess.call(['sudo','apt-get','update'])
-    subprocess.call(['sudo','pip3', 'install', '-r', file_path+'requirements.txt'])
+    subprocess.call(['pip3', 'install', '-r', file_path+'requirements.txt'])
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--video_path', dest='video_path', type=str, default=None, help='provide a path to directory (folder) with the raw videos')
@@ -96,8 +96,8 @@ def extract_video(config):
 
         Params:
 
-            --config this will be the config utility object created on initial run, it will handle loading and saving        
-        
+            --config this will be the config utility object created on initial run, it will handle loading and saving
+
         Return:
 
             str() a string object for the use of displaying to stdout the completion of this function/program
